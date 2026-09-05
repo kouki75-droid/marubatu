@@ -5,19 +5,18 @@
 
 class Game
 {
-	
 
 public:
 
-	/// <summary>
-	/// コンストラクター
-	/// </summary>
-	Game(){}
+    /// <summary>
+    /// コンストラクター
+    /// </summary>
+    Game() {}
 
-	/// <summary>
-	/// ゲームループ
-	/// </summary>
-	void Game_loop();
+    /// <summary>
+    /// ゲームループ
+    /// </summary>
+    void Game_loop();
 
     /// <summary>
     /// 入力処理
@@ -39,3 +38,4 @@ public:
     /// </summary>
     void Sound();
 
+};
