@@ -46,7 +46,8 @@ void Game::Game_loop()
     /// </summary>
 void Game::Input() 
 {
-
+    // ƒL[î•ñ‚Ì“Ç‚Ýž‚Ý
+    this->key.Read();
 }
 
 /// <summary>

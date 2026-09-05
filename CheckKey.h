@@ -5,7 +5,7 @@
 /// <summary>
 /// キーリーダークラス
 /// </summary>
-class Checkkey
+class CheckKey
 {
 	/// <summary>
 	/// キーの状態配列
