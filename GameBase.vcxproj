@@ -133,21 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckKey.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="SceneEd.cpp" />
-    <ClCompile Include="SceneOp.cpp" />
-    <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Background.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="KeyReader.h" />
-    <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneEd.h" />
-    <ClInclude Include="SceneOp.h" />
-    <ClInclude Include="SceneTest.h" />
-    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="CheckKey.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
