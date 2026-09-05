@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="CheckKey.h" />
+    <ClInclude Include="Gamegamenn.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

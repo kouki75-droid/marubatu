@@ -22,9 +22,10 @@ void Game::Game_loop()
         // 画面上の描画を初期化（画面を消去）
         ClearDrawScreen();
 
-        
-
-      
+		this->Input();	// 入力処理
+		this->Update();	// 更新処理
+		this->Draw();	// 描画処理
+		this->Sound();	// 音声再生処理
 
         // リフレッシュレートが一定になるまで待つ処理
         while (clock() < check_fps) {}
@@ -48,6 +49,7 @@ void Game::Input()
 {
     // キー情報の読み込み
     this->key.Read();
+	this->gamenn.Input();
 }
 
 /// <summary>
@@ -55,7 +57,7 @@ void Game::Input()
 /// </summary>
 void Game::Update()
 {
-
+	this->gamenn.Update();
 }
 
 /// <summary>
@@ -63,7 +65,10 @@ void Game::Update()
 /// </summary>
 void Game::Draw()
 {
-
+    ClearDrawScreen();
+    this->gamenn.Draw();
+    ScreenFlip();
+	
 }
 
 /// <summary>
