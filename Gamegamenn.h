@@ -105,7 +105,7 @@ class Gamegamenn
 			
 			if (CheckHitKey(KEY_INPUT_SPACE)) {
 				// スペースキーが押されたときの処理
-				MapData[cursorY][cursorX]  (mode == maru) ? 1 : 0; // マップデータを更新
+				MapData[cursorY][cursorX] = (mode == maru) ? 1 : 0; // マップデータを更新
 					
 				DrawCircle(cursorX * PANEL_SIZE + 350, cursorY * PANEL_SIZE + 150, 40, GetColor(255, 0, 0), FALSE);
 				
