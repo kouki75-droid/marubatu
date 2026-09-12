@@ -18,10 +18,12 @@ class Gamegamenn
 		{ 0,0,0,0,0, },
 	};
 
+	// パネルの画像ハンドル
 	int panel_image[30];
 	int panel_image_maru[30];
 	int panel_image_batu[30];
 
+	// カーソルの位置
 	int cursorX = 0;
 	int cursorY = 0;
 	int oldKeyLeft = 0;
@@ -30,6 +32,7 @@ class Gamegamenn
 	int oldKeyDown = 0;
 	int oldKeySpace = 0;
 
+	// マルとバツの状態を表す列挙型
 	enum marubatumode
 	{
 		maru = 1,	// 0はマス未使用の意味で使うので1から
@@ -64,25 +67,25 @@ public:
 		// 左右上下のカーソル移動
 		if (keyLeft && !oldKeyLeft) {
 			cursorX--;
-			if(cursorX < 0) {
+			if (cursorX < 0) {
 				cursorX = 0;
 			}
 		}
 		if (keyRight && !oldKeyRight) {
 			cursorX++;
-			if(cursorX > GAME_W - 1) {
+			if (cursorX > GAME_W - 1) {
 				cursorX = GAME_W - 1;
 			}
 		}
 		if (keyUp && !oldKeyUp) {
 			cursorY--;
-			if(cursorY < 0) {
+			if (cursorY < 0) {
 				cursorY = 0;
 			}
 		}
 		if (keyDown && !oldKeyDown) {
 			cursorY++;
-			if(cursorY > GAME_H - 1) {
+			if (cursorY > GAME_H - 1) {
 				cursorY = GAME_H - 1;
 			}
 		}
@@ -96,22 +99,9 @@ public:
 				// 次はもう一方の記号にする(交互切り替え)
 				mode = (mode == maru) ? batu : maru;
 			}
-			int selX = cursorX * PANEL_SIZE + 300;
-			int selY = cursorY * PANEL_SIZE + 100;
-			DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 255, 0), FALSE);
-			
-			
-
-			// スペースキーの押下状態を取得
-			
-			
-			if (CheckHitKey(KEY_INPUT_SPACE)) {
-				// スペースキーが押されたときの処理
-				MapData[cursorY][cursorX] = (mode == maru) ? 1 : 0; // マップデータを更新
-					
-				DrawCircle(cursorX * PANEL_SIZE + 350, cursorY * PANEL_SIZE + 150, 40, GetColor(255, 0, 0), FALSE);
-				
 		}
+
+
 
 		oldKeyLeft = keyLeft;
 		oldKeyRight = keyRight;
@@ -119,6 +109,7 @@ public:
 		oldKeyDown = keyDown;
 		oldKeySpace = keySpace;
 	}
+	
 
 
 	//描画処理
