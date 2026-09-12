@@ -9,8 +9,6 @@
 
 class Gamegamenn
 {
-	
-
 	int MapData[GAME_H][GAME_W] =
 	{
 		{ 0,0,0,0,0, },
@@ -18,81 +16,85 @@ class Gamegamenn
 		{ 0,0,0,0,0, },
 		{ 0,0,0,0,0, },
 		{ 0,0,0,0,0, },
-		
-		
 	};
 
-
 	int panel_image[30];
+	int panel_image_maru[30];
+	int panel_image_batu[30];
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’uiƒ}ƒbƒv”z—ñã‚ÌÀ•Wj
 	int cursorX = 0;
 	int cursorY = 0;
-	// ƒL[‚Ì‰Ÿ‚µ‚Á‚Ï‚È‚µ”»’è—pi‘OƒtƒŒ[ƒ€‚Ìó‘Ô‚ğ•Ûj
 	int oldKeyLeft = 0;
 	int oldKeyRight = 0;
 	int oldKeyUp = 0;
 	int oldKeyDown = 0;
 	int oldKeySpace = 0;
+
 	enum marubatumode
 	{
-		maru,
-		batu,
+		maru = 1,	// 0ã¯ãƒã‚¹æœªä½¿ç”¨ã®æ„å‘³ã§ä½¿ã†ã®ã§1ã‹ã‚‰
+		batu = 2,
 	};
 	int mode = maru;
 
-	public:
-		Gamegamenn() {}
-		
-		void Input()
-		{
-			for (int i = 0; i < 30; i++) {
-				panel_image[i] = LoadGraph("data/panel0.png");	//	’Ê‚ê‚é•û‚Ì‰æ‘œ
+public:
+	Gamegamenn() {}
+
+	void Input()
+	{
+		for (int i = 0; i < 30; i++) {
+			panel_image[i] = LoadGraph("data/panel0.png");
+			panel_image_maru[i] = LoadGraph("data/maru 1.png");
+			panel_image_batu[i] = LoadGraph("data/batu 1.png");
+		}
+	}
+
+	//æ›´æ–°å‡¦ç†
+	void Update()
+	{
+
+		// ã‚­ãƒ¼å…¥åŠ›ã®å–å¾—
+		int keyLeft = CheckHitKey(KEY_INPUT_LEFT);
+		int keyRight = CheckHitKey(KEY_INPUT_RIGHT);
+		int keyUp = CheckHitKey(KEY_INPUT_UP);
+		int keyDown = CheckHitKey(KEY_INPUT_DOWN);
+		int keySpace = CheckHitKey(KEY_INPUT_SPACE);
+
+		// ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸç¬é–“ã ã‘åå¿œã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+		// å·¦å³ä¸Šä¸‹ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+		if (keyLeft && !oldKeyLeft) {
+			cursorX--;
+			if(cursorX < 0) {
+				cursorX = 0;
 			}
 		}
-		//XVˆ—
-		void Update() 
-		{
-			// Œ»İ‚ÌƒL[ó‘Ô‚ğæ“¾
-			int keyLeft = CheckHitKey(KEY_INPUT_LEFT);
-			int keyRight = CheckHitKey(KEY_INPUT_RIGHT);
-			int keyUp = CheckHitKey(KEY_INPUT_UP);
-			int keyDown = CheckHitKey(KEY_INPUT_DOWN);
-			
-
-			// ‰Ÿ‚µ‚½uŠÔ‚¾‚¯”½‰‚³‚¹‚éi‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Å˜A‘±ˆÚ“®‚µ‚È‚¢‚æ‚¤‚Éj
-			if (keyLeft && !oldKeyLeft) {
-				cursorX--;
+		if (keyRight && !oldKeyRight) {
+			cursorX++;
+			if(cursorX > GAME_W - 1) {
+				cursorX = GAME_W - 1;
 			}
-			if (keyRight && !oldKeyRight) {
-				cursorX++;
-			}
-			if (keyUp && !oldKeyUp) {
-				cursorY--;
-			}
-			if (keyDown && !oldKeyDown) {
-				cursorY++;
-			}
-			
-			oldKeyLeft = keyLeft;
-			oldKeyRight = keyRight;
-			oldKeyUp = keyUp;
-			oldKeyDown = keyDown;
-
 		}
-		//•`‰æˆ—
-		void Draw() 
-		{
-			for (int h = 0; h < GAME_H; h++) {
-				for (int w = 0; w < GAME_W; w++) {
-					//	ƒ}ƒbƒv”z—ñ‚©‚ç”Ô†‚ğæ“¾
-					int num = MapData[h][w];
-					//	•`‰æ‚·‚éÀ•Wiƒpƒlƒ‹ƒTƒCƒY•ª‚¸‚ç‚µ‚½‚Æ‚±‚ëj
-					int x = w * PANEL_SIZE;
-					int y = h * PANEL_SIZE;
-					//	‚±‚Ì”Ô†‚Ì‰æ‘œ‚Ìƒpƒlƒ‹‰æ‘œ‚Ì•`‰æ
-					DrawGraph(x+300, y+100, panel_image[num], TRUE);
-				}
+		if (keyUp && !oldKeyUp) {
+			cursorY--;
+			if(cursorY < 0) {
+				cursorY = 0;
+			}
+		}
+		if (keyDown && !oldKeyDown) {
+			cursorY++;
+			if(cursorY > GAME_H - 1) {
+				cursorY = GAME_H - 1;
+			}
+		}
+
+		// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒã€ŒæŠ¼ã•ã‚ŒãŸç¬é–“ã€ã ã‘åå¿œ
+		if (keySpace && !oldKeySpace) {
+			// ã¾ã ä½•ã‚‚ç½®ã‹ã‚Œã¦ã„ãªã„ãƒã‚¹ã ã‘ç½®ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹
+			if (MapData[cursorY][cursorX] == 0) {
+				MapData[cursorY][cursorX] = mode;
+
+				// æ¬¡ã¯ã‚‚ã†ä¸€æ–¹ã®è¨˜å·ã«ã™ã‚‹(äº¤äº’åˆ‡ã‚Šæ›¿ãˆ)
+				mode = (mode == maru) ? batu : maru;
 			}
 			int selX = cursorX * PANEL_SIZE + 300;
 			int selY = cursorY * PANEL_SIZE + 100;
@@ -100,20 +102,61 @@ class Gamegamenn
 			
 			
 
-			// ƒXƒy[ƒXƒL[‚Ì‰Ÿ‰ºó‘Ô‚ğæ“¾
+			// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ã‚’å–å¾—
 			
 			
 			if (CheckHitKey(KEY_INPUT_SPACE)) {
-				// ƒXƒy[ƒXƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
-				MapData[cursorY][cursorX] = (mode == maru) ? 1 : 0; // ƒ}ƒbƒvƒf[ƒ^‚ğXV
+				// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+				MapData[cursorY][cursorX] = (mode == maru) ? 1 : 0; // ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
 					
 				DrawCircle(cursorX * PANEL_SIZE + 350, cursorY * PANEL_SIZE + 150, 40, GetColor(255, 0, 0), FALSE);
 				
-
-
-			}
-
 		}
-		//‰¹ºÄ¶ˆ—
-		void Sound();
+
+		oldKeyLeft = keyLeft;
+		oldKeyRight = keyRight;
+		oldKeyUp = keyUp;
+		oldKeyDown = keyDown;
+		oldKeySpace = keySpace;
+	}
+
+
+	//æç”»å‡¦ç†
+	void Draw()
+	{
+		// ãƒ‘ãƒãƒ«åœ°ã®æç”»
+		for (int h = 0; h < GAME_H; h++) {
+			for (int w = 0; w < GAME_W; w++) {
+				int num = MapData[h][w];
+				int x = w * PANEL_SIZE;
+				int y = h * PANEL_SIZE;
+				DrawGraph(x + 300, y + 100, panel_image[0], TRUE); // ãƒ‘ãƒãƒ«åœ°ã®çµµã¯å¸¸ã«0ç•ª
+			}
+		}
+
+		// é¸æŠä¸­ã®ãƒã‚¹ã‚’é»„è‰²ã§å›²ã‚€
+		int selX = cursorX * PANEL_SIZE + 300;
+		int selY = cursorY * PANEL_SIZE + 100;
+		DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 255, 0), FALSE);
+		
+
+		// ãƒãƒ«ã¨ãƒãƒ„ã‚’æç”»
+		for (int h = 0; h < GAME_H; h++) {
+			for (int w = 0; w < GAME_W; w++) {
+				int centerX = w * PANEL_SIZE + 300;
+				int centerY = h * PANEL_SIZE + 100;
+
+				// ãƒãƒ«ã¨ãƒãƒ„ã‚’æç”»
+				if (MapData[h][w] == maru) {
+					DrawGraph(centerX, centerY, panel_image_maru[0], TRUE);
+				}
+				else if (MapData[h][w] == batu) {
+					DrawGraph(centerX, centerY, panel_image_batu[0], TRUE);
+				}
+			}
+		}
+	}
+
+	//ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†
+	void Sound();
 };
