@@ -32,7 +32,7 @@ class Gamegamenn
 
 	enum marubatumode
 	{
-		maru = 1,	// 0‚Íƒ}ƒX–¢g—p‚ÌˆÓ–¡‚Åg‚¤‚Ì‚Å1‚©‚ç
+		maru = 1,	// 0ã¯ãƒã‚¹æœªä½¿ç”¨ã®æ„å‘³ã§ä½¿ã†ã®ã§1ã‹ã‚‰
 		batu = 2,
 	};
 	int mode = maru;
@@ -49,19 +49,19 @@ public:
 		}
 	}
 
-	//XVˆ—
+	//æ›´æ–°å‡¦ç†
 	void Update()
 	{
 
-		// ƒL[“ü—Í‚Ìæ“¾
+		// ã‚­ãƒ¼å…¥åŠ›ã®å–å¾—
 		int keyLeft = CheckHitKey(KEY_INPUT_LEFT);
 		int keyRight = CheckHitKey(KEY_INPUT_RIGHT);
 		int keyUp = CheckHitKey(KEY_INPUT_UP);
 		int keyDown = CheckHitKey(KEY_INPUT_DOWN);
 		int keySpace = CheckHitKey(KEY_INPUT_SPACE);
 
-		// ƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ‚¾‚¯”½‰‚·‚é‚æ‚¤‚É‚·‚é
-		// ¶‰Eã‰º‚ÌƒJ[ƒ\ƒ‹ˆÚ“®
+		// ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸç¬é–“ã ã‘åå¿œã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+		// å·¦å³ä¸Šä¸‹ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 		if (keyLeft && !oldKeyLeft) {
 			cursorX--;
 			if(cursorX < 0) {
@@ -87,15 +87,30 @@ public:
 			}
 		}
 
-		// ƒXƒy[ƒXƒL[‚ªu‰Ÿ‚³‚ê‚½uŠÔv‚¾‚¯”½‰
+		// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒã€ŒæŠ¼ã•ã‚ŒãŸç¬é–“ã€ã ã‘åå¿œ
 		if (keySpace && !oldKeySpace) {
-			// ‚Ü‚¾‰½‚à’u‚©‚ê‚Ä‚¢‚È‚¢ƒ}ƒX‚¾‚¯’u‚¯‚é‚æ‚¤‚É‚·‚é
+			// ã¾ã ä½•ã‚‚ç½®ã‹ã‚Œã¦ã„ãªã„ãƒã‚¹ã ã‘ç½®ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹
 			if (MapData[cursorY][cursorX] == 0) {
 				MapData[cursorY][cursorX] = mode;
 
-				// Ÿ‚Í‚à‚¤ˆê•û‚Ì‹L†‚É‚·‚é(ŒğŒİØ‚è‘Ö‚¦)
+				// æ¬¡ã¯ã‚‚ã†ä¸€æ–¹ã®è¨˜å·ã«ã™ã‚‹(äº¤äº’åˆ‡ã‚Šæ›¿ãˆ)
 				mode = (mode == maru) ? batu : maru;
 			}
+			int selX = cursorX * PANEL_SIZE + 300;
+			int selY = cursorY * PANEL_SIZE + 100;
+			DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 255, 0), FALSE);
+			
+			
+
+			// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ã‚’å–å¾—
+			
+			
+			if (CheckHitKey(KEY_INPUT_SPACE)) {
+				// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+				MapData[cursorY][cursorX] = (mode == maru) ? 1 : 0; // ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
+					
+				DrawCircle(cursorX * PANEL_SIZE + 350, cursorY * PANEL_SIZE + 150, 40, GetColor(255, 0, 0), FALSE);
+				
 		}
 
 		oldKeyLeft = keyLeft;
@@ -106,32 +121,32 @@ public:
 	}
 
 
-	//•`‰æˆ—
+	//æç”»å‡¦ç†
 	void Draw()
 	{
-		// ƒpƒlƒ‹’n‚Ì•`‰æ
+		// ãƒ‘ãƒãƒ«åœ°ã®æç”»
 		for (int h = 0; h < GAME_H; h++) {
 			for (int w = 0; w < GAME_W; w++) {
 				int num = MapData[h][w];
 				int x = w * PANEL_SIZE;
 				int y = h * PANEL_SIZE;
-				DrawGraph(x + 300, y + 100, panel_image[0], TRUE); // ƒpƒlƒ‹’n‚ÌŠG‚Íí‚É0”Ô
+				DrawGraph(x + 300, y + 100, panel_image[0], TRUE); // ãƒ‘ãƒãƒ«åœ°ã®çµµã¯å¸¸ã«0ç•ª
 			}
 		}
 
-		// ‘I‘ğ’†‚Ìƒ}ƒX‚ğ‰©F‚ÅˆÍ‚Ş
+		// é¸æŠä¸­ã®ãƒã‚¹ã‚’é»„è‰²ã§å›²ã‚€
 		int selX = cursorX * PANEL_SIZE + 300;
 		int selY = cursorY * PANEL_SIZE + 100;
 		DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 255, 0), FALSE);
 		
 
-		// ƒ}ƒ‹‚Æƒoƒc‚ğ•`‰æ
+		// ãƒãƒ«ã¨ãƒãƒ„ã‚’æç”»
 		for (int h = 0; h < GAME_H; h++) {
 			for (int w = 0; w < GAME_W; w++) {
 				int centerX = w * PANEL_SIZE + 300;
 				int centerY = h * PANEL_SIZE + 100;
 
-				// ƒ}ƒ‹‚Æƒoƒc‚ğ•`‰æ
+				// ãƒãƒ«ã¨ãƒãƒ„ã‚’æç”»
 				if (MapData[h][w] == maru) {
 					DrawGraph(centerX, centerY, panel_image_maru[0], TRUE);
 				}
@@ -142,6 +157,6 @@ public:
 		}
 	}
 
-	//ƒTƒEƒ“ƒhˆ—
+	//ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†
 	void Sound();
 };
