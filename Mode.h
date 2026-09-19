@@ -13,6 +13,8 @@ public:
 
 	int num = 0;
 
+	int turn_gema = 0;
+
 	void riset()
 	{
 		num = 0;

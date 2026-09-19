@@ -50,6 +50,8 @@ void Game::Titl()
         this->titl.Draw_titl();
         // 丸罰リセット
         this->gamenn.reset();
+        // 結果もリセット
+        result.reset();
 
         // スペース押したらゲームに
         if (CheckHitKey(KEY_INPUT_SPACE))
@@ -96,6 +98,11 @@ void Game::Update()
         {
             mode.game_mode = 3;
         }
+        // 
+        result.result_image();
+
+        // いったんリセット
+        mode.turn_gema = 0;
     }
 }
 
@@ -106,6 +113,8 @@ void Game::Draw()
 {
     if (mode.game_mode == 2)
     {
+        result.Loadimage();
+
         ClearDrawScreen();
         this->gamenn.Draw();
         ScreenFlip();
@@ -132,7 +141,7 @@ void Game::Result()
         result.Draw_serect();
         result.Draw_Titl();
 
-        // スペース押したらゲームに
+        // A押したらゲームに
         if (CheckHitKey(KEY_INPUT_A))
         {
             mode.a = 1;
@@ -146,6 +155,23 @@ void Game::Result()
         }
 
         // 番号を外へ
-//        result.srect_next();
+        result.srect_next(mode.turn_gema);
+
+        if (mode.turn_gema == 1)
+        {
+            mode.game_mode = 2;
+            // 丸罰リセット
+            this->gamenn.reset();
+            // 結果もリセット
+            result.reset();
+        }
+        else if (mode.turn_gema == 2)
+        {
+            mode.game_mode = 1;
+        }
+        else if (mode.turn_gema == 3)
+        {
+
+        }
     }
 }
