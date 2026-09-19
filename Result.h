@@ -240,10 +240,10 @@ public:
 	// É^ÉCÉgÉãÇï`âÊ
 	void Draw_Titl()
 	{
-		DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", maru_win);
+	/*	DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", maru_win);
 		DrawFormatString(0, 16, GetColor(255, 255, 255), "%d", maru_lose);
 		DrawFormatString(0, 32, GetColor(255, 255, 255), "%d", maru_drow);
-		DrawFormatString(0, 48, GetColor(255, 255, 255), "%d", num_result);
+		DrawFormatString(0, 48, GetColor(255, 255, 255), "%d", num_result);*/
 
 		// CPUÇÃèÍçá
 		if (cpu_win == true)
