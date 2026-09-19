@@ -3,7 +3,7 @@
 #include "DxLib.h"		// DxLib
 
 // 選択のマス幅
-#define MASU_DISTANCE 32
+#define MASU_DISTANCE 16
 
 class Result
 {
@@ -41,6 +41,12 @@ class Result
 	float serect_x = 100;
 	float serect_y = 300;
 
+	// 
+	bool end_serect = false;
+
+	// 結果を受け取る
+	int num_result = 0;
+
 public:
 
 	// コンストラクター
@@ -50,8 +56,7 @@ public:
 	void Move_serect_box()
 	{
 		// 上下と動かす
-		move_up();
-		move_down();
+		move();
 		// ボックスを範囲内に収める
 		serect_box_in();
 	}
@@ -59,26 +64,34 @@ public:
 	// 結果を受け取る
 	// CPU対戦かオフライン対戦か受け取って
 	// 勝ちか負けか引き分けか受け取る、（オフラインの場合〇目線で
-	void result_in(int &number)
+	void result_in(int number)
 	{
-
+		num_result = number;
 	}
 
 	// 上を押したら上に動く
-	void move_up()
+	// 下を押したら下に動く
+	void move()
 	{
 		if (CheckHitKey(KEY_INPUT_UP))
 		{
-			serect_y += MASU_DISTANCE;
+			if (end_serect == false)
+			{
+				serect_y -= MASU_DISTANCE* 2;
+				end_serect = true;
+			}
 		}
-	}
-
-	// 下を押したら下に動く
-	void move_down()
-	{
-		if (CheckHitKey(KEY_INPUT_DOWN))
+		else if (CheckHitKey(KEY_INPUT_DOWN))
 		{
-			serect_y -= MASU_DISTANCE;
+			if (end_serect == false)
+			{
+				end_serect = true;
+				serect_y += MASU_DISTANCE* 2;
+			}
+		}
+		else
+		{
+			end_serect = false;
 		}
 	}
 
@@ -123,7 +136,7 @@ public:
 	void Draw_serect()
 	{
 		// 
-		DrawBox(serect_x, serect_y, MASU_DISTANCE, 50, GetColor(255, 255, 0),FALSE);
+		DrawBox(serect_x, serect_y, serect_x + 200, serect_y + MASU_DISTANCE, GetColor(255, 255, 0),FALSE);
 
 		DrawString(100, 300, "もう一回", GetColor(255, 255, 255));
 		DrawString(100, 332, "メニューに戻る", GetColor(255, 255, 255));

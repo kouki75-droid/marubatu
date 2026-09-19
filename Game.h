@@ -4,17 +4,39 @@
 #include "DxLib.h"			// DxLib
 #include "CheckKey.h"
 #include "Gamegamenn.h"
+#include "Titl.h"
+#include "Result.h"
+#include "Mode.h"
+
 
 class Game
 {
+    // キーインスタンス
     CheckKey key;
+
+    // 丸罰ゲーム
     Gamegamenn gamenn;
+
+    // タイトル
+    Titl titl;
+
+    // 結果
+    Result result;
+
+    // ゲームモード
+    Mode mode;
+
 public:
 
     /// <summary>
     /// コンストラクター
     /// </summary>
     Game(){}
+
+    ///
+    /// タイトル
+    /// 
+    void Titl();
 
     /// <summary>
     /// ゲームループ
@@ -40,5 +62,10 @@ public:
     /// 音声再生処理
     /// </summary>
     void Sound();
+
+    ///
+   /// 結果
+   /// 
+    void Result();
 
 };

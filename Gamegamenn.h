@@ -54,6 +54,38 @@ class Gamegamenn
 public:
 	Gamegamenn() {}
 
+	void reset()
+	{   
+		for (int h = 0; h < GAME_H; h++) {
+			for (int w = 0; w < GAME_W; w++) {
+				MapData[h][w] = 0;
+			}
+		}
+
+		// パネルの画像ハンドル
+		panel_image;
+		panel_image_maru;
+		panel_image_batu;
+
+		panel_image_maruwin = 0;
+		panel_image_batuwin = 0;
+		panel_image_draw = 0;
+
+		cursorX = 0;
+		cursorY = 0;
+		oldKeyLeft = 0;
+		oldKeyRight = 0;
+		oldKeyUp = 0;
+		oldKeyDown = 0;
+		oldKeySpace = 0;
+
+		winner_state = 0;		// 0=まだ勝負なし, 1=マルの勝ち, 2=バツの勝ち 3=引き分け
+		WIN_COUNT = 4;	// 何個揃ったら勝ちか
+
+		mode = maru;
+	}
+
+
 	// 入力処理
 	void Input()
 	{
@@ -182,14 +214,15 @@ public:
 	
 	}
 
-
+	// 値を外へもっていく
+	void Result_out(int &num)
+	{
+		num = winner_state;
+	}
 	
 	//描画処理
 	void Draw()
 	{
-
-
-
 		// パネル地の描画
 		for (int h = 0; h < GAME_H; h++) {
 			for (int w = 0; w < GAME_W; w++) {
