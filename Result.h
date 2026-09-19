@@ -11,22 +11,28 @@ class Result
 	// CPU
 	// 勝ち
 	bool cpu_win = false;
+	int image_cpu_win;
 
 	// 負け
 	bool cpu_lose = false;
+	int image_cpu_lose;
 
 	// 引き分け
 	bool cpu_drow = false;
+	int image_cpu_drow;
 
 	// オフライン
 	// 勝ち
 	bool maru_win = false;
+	int image_maru_win;
 
 	// 負け
 	bool maru_lose = false;
+	int image_maru_lose;
 
 	// 引き分け
 	bool maru_drow = false;
+	int image_maru_drow;
 
 	// もう一回プレイするか
 	bool one_more = false;
@@ -47,6 +53,10 @@ class Result
 	// 結果を受け取る
 	int num_result = 0;
 
+	// 結果描画
+	float result_x = 400.0f;
+	float result_y = 20.0f;
+
 public:
 
 	// コンストラクター
@@ -61,12 +71,50 @@ public:
 		serect_box_in();
 	}
 
+	// ロードイメージ
+	void Loadimage()
+	{
+		image_cpu_win = LoadGraph("data/cpu_win.png");
+		image_cpu_lose = LoadGraph("data/cpu_lose.png");
+		image_cpu_drow = LoadGraph("data/cpu_drow.png");
+
+		image_maru_win = LoadGraph("data/maru_win.png");
+		image_maru_lose = LoadGraph("data/maru_win.png");
+		image_maru_drow = LoadGraph("data/maru_win.png");
+		 
+	}
+
 	// 結果を受け取る
 	// CPU対戦かオフライン対戦か受け取って
 	// 勝ちか負けか引き分けか受け取る、（オフラインの場合〇目線で
 	void result_in(int number)
 	{
+		// 勝ったか負けたか引き分けたか
 		num_result = number;
+	}
+
+	// 結果によって画像を変える
+	void result_image()
+	{
+		// オフラインの場合
+		if (num_result == 0)
+		{
+			maru_win = false;
+			maru_lose = false;
+			maru_drow = false;
+		}
+		else if (num_result == 1)
+		{
+			maru_win = true;
+		}
+		else if (num_result == 2)
+		{
+			maru_lose = true;
+		}
+		else if (num_result == 3)
+		{
+			maru_drow = true;
+		}
 	}
 
 	// 上を押したら上に動く
@@ -149,29 +197,29 @@ public:
 		// CPUの場合
 		if (cpu_win == true)
 		{
-
+			DrawGraph(result_x, result_y, image_cpu_win, TRUE);
 		}
 		else if(cpu_lose == true)
 		{
-			
+			DrawGraph(result_x, result_y, image_cpu_lose, TRUE);
 		}
 		else if (cpu_drow == true)
 		{
-
+			DrawGraph(result_x, result_y, image_cpu_drow, TRUE);
 		}
 
 		// オフラインの場合,〇の人基準
 		if (maru_win == true)
 		{
-
+			DrawGraph(result_x, result_y, image_maru_win, TRUE);
 		}
 		else if (maru_lose == true)
 		{
-
+			DrawGraph(result_x, result_y, image_maru_lose, TRUE);
 		}
 		else if (maru_drow == true)
 		{
-
+			DrawGraph(result_x, result_y, image_maru_drow, TRUE);
 		}
 
 	}
