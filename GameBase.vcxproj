@@ -135,6 +135,10 @@
   <ItemGroup>
     <ClCompile Include="CheckKey.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gamegamenn.cpp" />
+    <ClCompile Include="mode.cpp" />
+    <ClCompile Include="Result.cpp" />
+    <ClCompile Include="Titl.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
