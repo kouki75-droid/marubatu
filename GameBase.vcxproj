@@ -147,6 +147,7 @@
     <ClInclude Include="Gamegamenn.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="Result.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="Titl.h" />
   </ItemGroup>
   <ItemGroup>
