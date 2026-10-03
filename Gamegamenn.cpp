@@ -275,8 +275,5 @@ void Gamegamenn::Sound()
 {
 }
 
-void Gamegamenn::cout(int &number)
-{
-   
-}
+
 

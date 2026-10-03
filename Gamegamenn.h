@@ -114,7 +114,4 @@ public:
     /// </summary>
     void Sound();
 
-    // 
-    void cout(int &number);
-
 };

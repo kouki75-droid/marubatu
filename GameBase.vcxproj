@@ -137,6 +137,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gamegamenn.cpp" />
     <ClCompile Include="mode.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="Titl.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="CheckKey.h" />
     <ClInclude Include="Gamegamenn.h" />
     <ClInclude Include="Mode.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="Titl.h" />

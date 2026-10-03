@@ -5,6 +5,7 @@
 #include "Titl.h"
 #include "Result.h"
 #include "Mode.h"
+#include"Music.h"
 
 class Game
 {
@@ -23,6 +24,9 @@ private:
 
     // ゲームモード  
     Mode mode;
+
+    // 音楽
+    Music music;
 
 public:
     /// <summary>  

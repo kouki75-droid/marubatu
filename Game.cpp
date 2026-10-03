@@ -46,6 +46,9 @@ void Game::Titl()
 {
     if (mode.game_mode == 1)
     {
+        // ‰¹Šy
+        music.titl_bgm();
+
         // •`‰æ
         this->titl.Draw_titl();
 
@@ -56,11 +59,13 @@ void Game::Titl()
         if (CheckHitKey(KEY_INPUT_SPACE))
         {
             mode.a = 1;
+            music.serect_se();
         }
         else if (mode.a == 1)
         {
             mode.game_mode = 2;
             mode.a = 0;
+            music.stop_music();
         }
     }
 }
@@ -85,6 +90,9 @@ void Game::Update()
 {
     if (mode.game_mode == 2)
     {
+        // ‰¹Šy
+        music.game_bgm();
+
         this->gamenn.Update();
         // Œ‹‰Ê‚ðŠO‚Ö‚à‚Á‚Ä‚¢‚­  
         gamenn.Result_out(mode.num);
@@ -99,6 +107,7 @@ void Game::Update()
             {
                 mode.game_mode = 3;
                 result.result_in(mode.num);
+                music.stop_music();
             }
             else
             {
@@ -146,6 +155,7 @@ void Game::Result()
         if (CheckHitKey(KEY_INPUT_A))
         {
             mode.a = 1;
+            music.serect_se();
         }
         else if (mode.a == 1)
         {
