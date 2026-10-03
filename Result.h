@@ -1,227 +1,92 @@
 #pragma once
-#include <string>
-#include "DxLib.h"		// DxLib
 
-// 選択のマス幅
 #define MASU_DISTANCE 16
 
 class Result
 {
-	// タイトル何を表示するか
-	// CPU
-	// 勝ち
-	bool cpu_win = false;
-	int image_cpu_win;
+private:
+    // CPU結果状態・画像
+    bool cpu_win = false;
+    int image_cpu_win = -1;
 
-	// 負け
-	bool cpu_lose = false;
-	int image_cpu_lose;
+    bool cpu_lose = false;
+    int image_cpu_lose = -1;
 
-	// 引き分け
-	bool cpu_drow = false;
-	int image_cpu_drow;
+    bool cpu_drow = false;
+    int image_cpu_drow = -1;
 
-	// オフライン
-	// 勝ち
-	bool maru_win = false;
-	int image_maru_win;
+    // オフライン結果状態・画像
+    bool maru_win = false;
+    int image_maru_win = -1;
 
-	// 負け
-	bool maru_lose = false;
-	int image_maru_lose;
+    bool maru_lose = false;
+    int image_maru_lose = -1;
 
-	// 引き分け
-	bool maru_drow = false;
-	int image_maru_drow;
+    bool maru_drow = false;
+    int image_maru_drow = -1;
 
-	// もう一回プレイするか
-	bool one_more = false;
+    bool one_more = false;
+    bool return_menu = false;
+    bool look_scene = false;
 
-	// メニューに戻るか
-	bool return_menu = false;
+    // 選択枠の位置
+    float serect_x = 100.0f;
+    float serect_y = 300.0f;
 
-	// 場面を見る
-	bool look_scene = false;
+    bool end_serect = false;
 
-	// 選択してる四角の画像
-	float serect_x = 100;
-	float serect_y = 300;
+    // 結果を受け取る
+    int num_result = 0;
 
-	// 
-	bool end_serect = false;
-
-	// 結果を受け取る
-	int num_result = 0;
-
-	// 結果描画
-	float result_x = 400.0f;
-	float result_y = 20.0f;
+    // 結果描画位置
+    float result_x = 400.0f;
+    float result_y = 20.0f;
 
 public:
+    Result() {}
 
-	// コンストラクター
-	Result() {}
+    /// <summary>
+    /// 画像読み込み
+    /// </summary>
+    void Loadimage();
 
-	// 選択する四角を動かす
-	void Move_serect_box()
-	{
-		// 上下と動かす
-		move();
-		// ボックスを範囲内に収める
-		serect_box_in();
-	}
+    /// <summary>
+    /// 選択枠移動処理
+    /// </summary>
+    void Move_serect_box();
 
-	// ロードイメージ
-	void Loadimage()
-	{
-		image_cpu_win = LoadGraph("data/cpu_win.png");
-		image_cpu_lose = LoadGraph("data/cpu_lose.png");
-		image_cpu_drow = LoadGraph("data/cpu_drow.png");
+    /// <summary>
+    /// 結果数値の受取
+    /// </summary>
+    void result_in(int number);
 
-		image_maru_win = LoadGraph("data/maru_win.png");
-		image_maru_lose = LoadGraph("data/maru_win.png");
-		image_maru_drow = LoadGraph("data/maru_win.png");
-		 
-	}
+    /// <summary>
+    /// 結果に応じた描画フラグ切り替え
+    /// </summary>
+    void result_image();
 
-	// 結果を受け取る
-	// CPU対戦かオフライン対戦か受け取って
-	// 勝ちか負けか引き分けか受け取る、（オフラインの場合〇目線で
-	void result_in(int number)
-	{
-		// 勝ったか負けたか引き分けたか
-		num_result = number;
-	}
+    /// <summary>
+    /// 上下移動処理
+    /// </summary>
+    void move();
 
-	// 結果によって画像を変える
-	void result_image()
-	{
-		// オフラインの場合
-		if (num_result == 0)
-		{
-			maru_win = false;
-			maru_lose = false;
-			maru_drow = false;
-		}
-		else if (num_result == 1)
-		{
-			maru_win = true;
-		}
-		else if (num_result == 2)
-		{
-			maru_lose = true;
-		}
-		else if (num_result == 3)
-		{
-			maru_drow = true;
-		}
-	}
+    /// <summary>
+    /// 選択決定処理
+    /// </summary>
+    void srect_next(int& number);
 
-	// 上を押したら上に動く
-	// 下を押したら下に動く
-	void move()
-	{
-		if (CheckHitKey(KEY_INPUT_UP))
-		{
-			if (end_serect == false)
-			{
-				serect_y -= MASU_DISTANCE* 2;
-				end_serect = true;
-			}
-		}
-		else if (CheckHitKey(KEY_INPUT_DOWN))
-		{
-			if (end_serect == false)
-			{
-				end_serect = true;
-				serect_y += MASU_DISTANCE* 2;
-			}
-		}
-		else
-		{
-			end_serect = false;
-		}
-	}
+    /// <summary>
+    /// 選択枠の移動制限
+    /// </summary>
+    void serect_box_in();
 
-	// 1:リトライ　２：メニュー　３：場面を見る
-	void srect_next(int number)
-	{
-		// スペースを押したら
-		if (CheckHitKey(KEY_INPUT_SPACE))
-		{
-			// 選択してる選択肢をオンにする
-			if (serect_y == 300)
-			{
-				number = 1;
-			}
-			else if (serect_y == 332)
-			{
-				number = 2;
-			}
-			else if (serect_y == 364)
-			{
-				number = 3;
-			}
-		}
-	}
+    /// <summary>
+    /// 選択肢描画
+    /// </summary>
+    void Draw_serect();
 
-	// セレクトの箱を範囲外に行かせない
-	void serect_box_in()
-	{
-		// 上に行き過ぎないように
-		if (serect_y < 300)
-		{
-			serect_y = 300;
-		}
-		// 下に行き過ぎないように
-		if (serect_y > 364)
-		{
-			serect_y = 364;
-		}
-	}
-
-	// 選択肢を描画
-	void Draw_serect()
-	{
-		// 
-		DrawBox(serect_x, serect_y, serect_x + 200, serect_y + MASU_DISTANCE, GetColor(255, 255, 0),FALSE);
-
-		DrawString(100, 300, "もう一回", GetColor(255, 255, 255));
-		DrawString(100, 332, "メニューに戻る", GetColor(255, 255, 255));
-		DrawString(100, 364, "場面を見る", GetColor(255, 255, 255));
-	}
-
-	// タイトルを描画
-	void Draw_Titl()
-	{
-		// CPUの場合
-		if (cpu_win == true)
-		{
-			DrawGraph(result_x, result_y, image_cpu_win, TRUE);
-		}
-		else if(cpu_lose == true)
-		{
-			DrawGraph(result_x, result_y, image_cpu_lose, TRUE);
-		}
-		else if (cpu_drow == true)
-		{
-			DrawGraph(result_x, result_y, image_cpu_drow, TRUE);
-		}
-
-		// オフラインの場合,〇の人基準
-		if (maru_win == true)
-		{
-			DrawGraph(result_x, result_y, image_maru_win, TRUE);
-		}
-		else if (maru_lose == true)
-		{
-			DrawGraph(result_x, result_y, image_maru_lose, TRUE);
-		}
-		else if (maru_drow == true)
-		{
-			DrawGraph(result_x, result_y, image_maru_drow, TRUE);
-		}
-
-	}
-
+    /// <summary>
+    /// タイトル/勝敗結果描画
+    /// </summary>
+    void Draw_Titl();
 };

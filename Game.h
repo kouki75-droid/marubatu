@@ -1,71 +1,67 @@
 #pragma once
 
-#include <ctime>			// 標準C ライブラリ ヘッダー <time.h> をインクルードし、関連する名前を std 名前空間に追加します。
-#include "DxLib.h"			// DxLib
 #include "CheckKey.h"
 #include "Gamegamenn.h"
 #include "Titl.h"
 #include "Result.h"
 #include "Mode.h"
 
-
 class Game
 {
+private:
     // キーインスタンス
     CheckKey key;
 
-    // 丸罰ゲーム
+    // 丸罰ゲーム  
     Gamegamenn gamenn;
 
-    // タイトル
+    // タイトル  
     Titl titl;
 
-    // 結果
+    // 結果  
     Result result;
 
-    // ゲームモード
+    // ゲームモード  
     Mode mode;
 
 public:
+    /// <summary>  
+    /// コンストラクター  
+    /// </summary>  
+    Game() {}
 
     /// <summary>
-    /// コンストラクター
+    /// タイトル処理
     /// </summary>
-    Game(){}
-
-    ///
-    /// タイトル
-    /// 
     void Titl();
 
-    /// <summary>
-    /// ゲームループ
-    /// </summary>
+    /// <summary>  
+    /// ゲームループ  
+    /// </summary>  
     void Game_loop();
 
-    /// <summary>
-    /// 入力処理
-    /// </summary>
+    /// <summary>  
+    /// 入力処理  
+    /// </summary>  
     void Input();
 
-    /// <summary>
-    /// 更新処理
-    /// </summary>
+    /// <summary>  
+    /// 更新処理  
+    /// </summary>  
     void Update();
 
-    /// <summary>
-    /// 描画処理
-    /// </summary>
+    /// <summary>  
+    /// 描画処理  
+    /// </summary>  
     void Draw();
 
-    /// <summary>
-    /// 音声再生処理
-    /// </summary>
+    /// <summary>  
+    /// 音声再生処理  
+    /// </summary>  
     void Sound();
 
-    ///
-   /// 結果
-   /// 
+    /// <summary>
+    /// 結果処理
+    /// </summary>
     void Result();
-
 };
