@@ -5,7 +5,7 @@
 class Music
 {
 	// BGM‚Ì‰¹—Ê
-	int music_volume = 100;
+	int music_volume = 255;
 
 	// BGM
 
