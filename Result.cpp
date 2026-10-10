@@ -12,6 +12,7 @@ void Result::Loadimage()
         image_maru_win = LoadGraph("data/maru_win.png");
         image_maru_lose = LoadGraph("data/maru_win.png");
         image_maru_drow = LoadGraph("data/maru_win.png");
+        result_back = LoadGraph("data/result.png");
     }
 }
 
@@ -105,6 +106,7 @@ void Result::serect_box_in()
 
 void Result::Draw_serect()
 {
+    DrawGraph(0, 0, result_back, FALSE);
     DrawBox((int)serect_x, (int)serect_y, (int)serect_x + 200, (int)serect_y + MASU_DISTANCE, GetColor(255, 255, 0), FALSE);
 
     DrawString(100, 300, "‚à‚¤ˆê‰ñ", GetColor(255, 255, 255));

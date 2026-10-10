@@ -17,6 +17,9 @@ void Gamegamenn::Input()
 
 		panel_image_skill_on = LoadGraph("data/skill_on.png");
 		panel_image_skill_off = LoadGraph("data/skill_of.png");
+
+        back_image = LoadGraph("data/back.png");
+        
     }
 }
 
@@ -185,6 +188,8 @@ void Gamegamenn::Result_out(int& num)
 
 void Gamegamenn::Draw()
 {
+
+    DrawGraph(0, 0, back_image, TRUE);
     // ƒpƒlƒ‹’n‚Ì•`‰æ
     for (int h = 0; h < GAME_H; h++) {
         for (int w = 0; w < GAME_W; w++) {

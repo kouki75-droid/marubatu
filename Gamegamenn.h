@@ -30,6 +30,9 @@ private:
 	int panel_image_skill_off = -1;
 
     int _test = 0;
+    //背景
+    int back_image = -1;
+    
 
     // カーソルの位置
     int cursorX = 0;

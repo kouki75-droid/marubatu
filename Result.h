@@ -42,6 +42,9 @@ private:
     float result_x = 400.0f;
     float result_y = 20.0f;
 
+    //ƒŠƒUƒ‹ƒg”wŒi
+    int result_back = -1;
+
 public:
     Result() {}
 
