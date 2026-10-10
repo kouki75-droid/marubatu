@@ -6,7 +6,7 @@ void Gamegamenn::Input()
     // 画像は毎フレームロードするのではなく、1度だけロードする
     if (panel_image == -1)
     {
-        panel_image = LoadGraph("data/panel0.png");
+        panel_image = LoadGraph("data/panel.png");
         panel_image_maru = LoadGraph("data/maru 1.png");
         panel_image_batu = LoadGraph("data/batu 1.png");
         panel_image_skill = LoadGraph("data/skill.png");
