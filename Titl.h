@@ -8,6 +8,8 @@ private:
     int title_x = 1280;
     int title_y = 720;
 
+	int op_image = -1; 
+
     // はすい
     int serect_x = 530;
     int serect_y = 390;
@@ -15,7 +17,10 @@ private:
     bool serect_move = true;
 
 public:
-
+    /// <summary>
+    /// 画像素材の読み込み（初期化時に一度だけ呼ぶ）
+    /// </summary>
+    void Input();
     // 選択を表示
     void serect();
     // 選択の移動

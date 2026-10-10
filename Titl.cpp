@@ -1,6 +1,16 @@
 #include "Titl.h"
 #include "DxLib.h"
 
+void Titl::Input()
+{
+    
+    if (op_image == -1)
+    {
+        op_image =LoadGraph("data/op.png");
+    }
+    move_serect();
+    serect();
+}
 void Titl::serect()
 {
     if (serect_number == 1)
@@ -68,7 +78,8 @@ void Titl::move_serect()
 
 void Titl::Draw_titl()
 {
-    DrawBox(op_x, op_y, title_x, title_y, GetColor(255, 255, 255), TRUE); // ”’‚¢lŠpŒ`‚ğ•`‰æ  
+	
+    //DrawBox(op_x, op_y, title_x, title_y, GetColor(255, 255, 255), TRUE); // ”’‚¢lŠpŒ`‚ğ•`‰æ  
     DrawString(580, 100, "Z", GetColor(255, 0, 0));                      // •¶š—ñ‚ğ•`‰æ  
     DrawString(595, 100, "~", GetColor(0, 0, 255));                     // •¶š—ñ‚ğ•`‰æ  
     DrawString(610, 100, "ƒQ[ƒ€", GetColor(0, 0, 0));                   // •¶š—ñ‚ğ•`‰æ  
@@ -84,4 +95,5 @@ void Titl::Draw_titl()
     DrawString(510, 510, "ƒIƒtƒ‰ƒCƒ“‘Îí‚Ì‚İÀ‘•", GetColor(0, 0, 0));           // •¶š—ñ‚ğ•`‰æ 
 
     DrawBox(serect_x, serect_y, serect_x + 120, serect_y + 20, GetColor(0, 150, 0), FALSE);
+    DrawGraph(op_x, op_y, op_image, TRUE); // ‰æ‘œ‚ğ•`‰æ
 }

@@ -205,7 +205,9 @@ void Gamegamenn::Draw()
     // 選択中のマスを黄色で囲む
     int selX = cursorX * PANEL_SIZE + 300;
     int selY = cursorY * PANEL_SIZE + 100;
-    DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 255, 0), FALSE);
+    DrawBox(selX, selY, selX + PANEL_SIZE, selY + PANEL_SIZE, GetColor(255, 0, 255), FALSE);
+    DrawBox(selX+1, selY+1, selX+1 + PANEL_SIZE, selY+1 + PANEL_SIZE, GetColor(255, 0, 255), FALSE);
+    DrawBox(selX + 2, selY + 2, selX + 2 + PANEL_SIZE, selY + 2 + PANEL_SIZE, GetColor(255, 0, 255), FALSE);
 
     // 3. 〇・×・スキルの描画
     for (int h = 0; h < GAME_H; h++) {

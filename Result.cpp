@@ -105,8 +105,8 @@ void Result::serect_box_in()
 }
 
 void Result::Draw_serect()
-{
-    DrawGraph(0, 0, result_back, FALSE);
+{ 
+	
     DrawBox((int)serect_x, (int)serect_y, (int)serect_x + 200, (int)serect_y + MASU_DISTANCE, GetColor(255, 255, 0), FALSE);
 
     DrawString(100, 300, "‚à‚¤ˆê‰ñ", GetColor(255, 255, 255));
@@ -114,10 +114,13 @@ void Result::Draw_serect()
     DrawString(100, 364, "ê–Ê‚ğŒ©‚é", GetColor(255, 255, 255));
 
     DrawString(100, 396, "A‚Å‘I‘ğ", GetColor(255, 255, 255));
+
+    DrawGraph(0, 0, result_back, TRUE);
 }
 
 void Result::Draw_Titl()
 {
+    
     // CPU‚Ìê‡
     if (cpu_win)
     {

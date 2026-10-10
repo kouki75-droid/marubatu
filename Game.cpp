@@ -48,6 +48,7 @@ void Game::Titl()
 {
     if (mode.game_mode == 1)
     {
+        this->titl.Input();
         // ‰¹Šy
         music.titl_bgm();
 
@@ -108,6 +109,7 @@ void Game::Update()
             if (gamenn.mode_count >= 100)
             {
                 mode.game_mode = 3;
+                result.Loadimage();
                 result.result_in(mode.num);
                 music.stop_music();
             }
