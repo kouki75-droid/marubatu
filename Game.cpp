@@ -156,7 +156,7 @@ void Game::Result()
         result.Draw_Titl();
 
         // Aキー押したらタイトルに  
-        if (CheckHitKey(KEY_INPUT_A))
+        if (CheckHitKey(KEY_INPUT_RETURN))
         {
             mode.a = 1;
             music.serect_se();
