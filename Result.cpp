@@ -5,13 +5,13 @@ void Result::Loadimage()
 {
     if (image_cpu_win == -1)
     {
-        image_cpu_win = LoadGraph("data/cpu_win.png");
+        /*image_cpu_win = LoadGraph("data/cpu_win.png");
         image_cpu_lose = LoadGraph("data/cpu_lose.png");
         image_cpu_drow = LoadGraph("data/cpu_drow.png");
 
         image_maru_win = LoadGraph("data/maru_win.png");
         image_maru_lose = LoadGraph("data/maru_win.png");
-        image_maru_drow = LoadGraph("data/maru_win.png");
+        image_maru_drow = LoadGraph("data/maru_win.png");*/
         result_back = LoadGraph("data/result.png");
     }
 }

@@ -20,6 +20,8 @@ void Gamegamenn::Input()
 
         back_image = LoadGraph("data/back.png");
         
+        // ルール
+        image_luru = LoadGraph("data/luru.png");
     }
 }
 
@@ -39,6 +41,7 @@ void Gamegamenn::reset()
     oldKeyDown = 0;
     oldKeySpace = 0;
     oldKeyE = 0;
+    oldKeyB = 0;
 
     winner_state = 0;
     WIN_COUNT = 4;
@@ -61,6 +64,7 @@ void Gamegamenn::Update()
     int keyDown = CheckHitKey(KEY_INPUT_DOWN);
     int keySpace = CheckHitKey(KEY_INPUT_SPACE);
     int keyE = CheckHitKey(KEY_INPUT_E);
+    int keyB = CheckHitKey(KEY_INPUT_B);
 
     // 左右上下のカーソル移動（トリガー判定）
     if (keyLeft && !oldKeyLeft) {
@@ -114,12 +118,26 @@ void Gamegamenn::Update()
         }
     }
 
+    // Bが押されたときに反応
+    if (keyB && !oldKeyB)
+    {
+        if (luru_draw == false)
+        {
+            luru_draw = true;
+        }
+        else
+        {
+            luru_draw = false;
+        }
+    }
+
     oldKeyLeft = keyLeft;
     oldKeyRight = keyRight;
     oldKeyUp = keyUp;
     oldKeyDown = keyDown;
     oldKeySpace = keySpace;
 	oldKeyE = keyE;
+    oldKeyB = keyB;
 }
 
 void Gamegamenn::CheckSkill(int x, int y, int who)
@@ -239,6 +257,12 @@ void Gamegamenn::Draw()
     else if (winner_state == 3) {
         DrawGraph(300, 100, panel_image_draw, TRUE);
     }
+
+    // ルール画像の描画
+    if (luru_draw == true)
+    {
+        DrawGraph(100, 50, image_luru, TRUE);
+    }
 }
 
 void Gamegamenn::Draw_SkillUI()
@@ -276,6 +300,9 @@ void Gamegamenn::Draw_SkillUI()
     else if (mode == batu) {
         DrawString(uiX,  10, "現在のターン: ×", GetColor(100, 100, 255));
     }
+
+    // ルールブックはBで表示
+    DrawString(uiX-600, 10, "Bでルールブックを開く/閉じる", GetColor(255, 255, 255));
 }
 
 void Gamegamenn::Sound()

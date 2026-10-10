@@ -32,7 +32,10 @@ private:
     int _test = 0;
     //背景
     int back_image = -1;
-    
+
+    // ルール画像
+    int image_luru = -1;
+    bool luru_draw = false;
 
     // カーソルの位置
     int cursorX = 0;
@@ -43,6 +46,7 @@ private:
     int oldKeyDown = 0;
     int oldKeySpace = 0;
 	int oldKeyE = 0;
+    int oldKeyB = 0;
     
     // スキルの使用フラグ（各プレイヤー1回のみ）
     bool maru_skill_used = false; // trueなら使用済み
