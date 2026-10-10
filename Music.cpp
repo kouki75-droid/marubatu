@@ -10,15 +10,24 @@ void Music::music_in()
 // タイトルBGMを流す
 void Music::titl_bgm()
 {
-	PlayMusic("music/Titlbgm.mp3", DX_PLAYTYPE_LOOP);
-	SetVolumeMusic(music_volume);
+	if (one_music == false)
+	{
+		PlayMusic("music/Titlbgm.mp3", DX_PLAYTYPE_LOOP);
+		SetVolumeMusic(music_volume);
+		one_music = true;
+	}
+	
 }
 
 // ゲームBGMを流す
 void Music::game_bgm()
 {
-	PlayMusic("music/Gamebgm.mp3", DX_PLAYTYPE_LOOP);
-	SetVolumeMusic(music_volume);
+	if (one_music == false)
+	{
+		PlayMusic("music/Gamebgm.mp3", DX_PLAYTYPE_LOOP);
+		SetVolumeMusic(music_volume);
+		one_music = true;
+	}
 }
 
 
@@ -26,6 +35,7 @@ void Music::game_bgm()
 void Music::stop_music()
 {
 	StopMusic();
+	one_music = false;
 }
 
 // SEを流す

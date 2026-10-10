@@ -13,6 +13,9 @@ class Music
 	int skil;
 	int marubatu;
 	int serect;
+
+	// ˆê‰ñ‚µ‚©ŒÄ‚Ño‚³‚È‚¢‚æ‚¤‚É‚·‚é
+	bool one_music = false;
 	
 
 public:
