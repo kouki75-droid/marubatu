@@ -2,7 +2,7 @@
 
 void Music::music_in()
 {
-	skil = LoadSoundMem("music/Skil_Usage.mp3");
+	skil = LoadSoundMem("music/Skill_Usage.mp3");
 	marubatu = LoadSoundMem("music/marubatuse.mp3");
 	serect = LoadSoundMem("music/serect.mp3");
 

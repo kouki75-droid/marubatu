@@ -1,4 +1,6 @@
 
+#include "Music.h"
+
 
 #define GAME_W 5
 #define GAME_H 5
@@ -70,6 +72,7 @@ private:
   
 
 public:
+	Music music;
     int mode_count = 0;
     Gamegamenn() {}
 

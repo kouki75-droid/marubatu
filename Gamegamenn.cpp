@@ -3,6 +3,7 @@
 
 void Gamegamenn::Input()
 {
+    music.music_in();
     // 画像は毎フレームロードするのではなく、1度だけロードする
     if (panel_image == -1)
     {
@@ -57,6 +58,7 @@ void Gamegamenn::reset()
 
 void Gamegamenn::Update()
 {
+
     // キー入力の取得
     int keyLeft = CheckHitKey(KEY_INPUT_LEFT);
     int keyRight = CheckHitKey(KEY_INPUT_RIGHT);
@@ -91,7 +93,9 @@ void Gamegamenn::Update()
 
         // 空きマス(0) かつ スキルが使える状態の場合のみ発動
         if (MapData[cursorY][cursorX] == 0 && can_use_skill) {
+            music.skil_se();
             CheckSkill(cursorX, cursorY, mode);
+            
 
             // 使用済みフラグを更新
             if (mode == maru) {
@@ -107,6 +111,7 @@ void Gamegamenn::Update()
     // スペースキーが押された瞬間だけ反応
     if (keySpace && !oldKeySpace) {
         if (MapData[cursorY][cursorX] == 0) {
+            music.serect_se();
             MapData[cursorY][cursorX] = mode;
 
             // 置いた直後に勝利判定
